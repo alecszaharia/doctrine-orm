@@ -76,6 +76,17 @@ class FilterCollectionTest extends OrmTestCase
 
         self::assertInstanceOf(MyFilter::class, $filterCollection->getFilter('testFilter'));
     }
+
+    public function testGetHash()
+    {
+        $filterCollection = $this->em->getFilters();
+        $filterCollection->enable('testFilter');
+        $filterCollection->getFilter('testFilter');
+        $filterCollection->setParameter('test','string');
+        $hash = $filterCollection->getHash();
+
+        $this->assertEquals("testFilterDoctrine\Tests\ORM\Query\MyFilter1test2string",$hash);
+    }
 }
 
 class MyFilter extends SQLFilter
