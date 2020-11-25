@@ -208,7 +208,7 @@ class FilterCollection
         $filterHash = '';
 
         foreach ($this->enabledFilters as $name => $filter) {
-            $filterHash .= $name . $filter;
+            $filterHash .= $name . $filter->getHash();
         }
 
         return $filterHash;
