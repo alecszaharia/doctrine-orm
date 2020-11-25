@@ -81,11 +81,11 @@ class FilterCollectionTest extends OrmTestCase
     {
         $filterCollection = $this->em->getFilters();
         $filterCollection->enable('testFilter');
-        $filterCollection->getFilter('testFilter');
-        $filterCollection->setParameter('test','string');
+        $filter = $filterCollection->getFilter('testFilter');
+        $filter->setParameter('test','string');
         $hash = $filterCollection->getHash();
 
-        $this->assertEquals("testFilterDoctrine\Tests\ORM\Query\MyFilter1test2string",$hash);
+        $this->assertEquals('testFilterDoctrine\ORM\Query\Filter\SQLFiltera:1:{s:4:"test";a:2:{s:5:"value";s:6:"string";s:4:"type";i:2;}}',$hash);
     }
 }
 
